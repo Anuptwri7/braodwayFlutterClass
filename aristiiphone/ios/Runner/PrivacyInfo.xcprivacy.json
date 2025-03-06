@@ -1,0 +1,16 @@
+{
+    "NSPrivacyAccessedAPITypes": [
+        {
+            "NSPrivacyAccessedAPIType": "FileTimestamp",
+            "NSPrivacyAccessedAPITypeReasons": ["NSPrivacyAccessedAPITypeGeneralUse"]
+        }
+    ],
+    "NSPrivacyCollectedDataTypes": [
+        {
+            "NSPrivacyCollectedDataType": "Photos or Videos",
+            "NSPrivacyCollectedDataTypeLinked": false,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": ["App Functionality"]
+        }
+    ]
+}
