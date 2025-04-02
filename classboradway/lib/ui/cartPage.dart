@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'checkoutPage.dart';
+
 class CartPage extends StatefulWidget {
-  const CartPage({super.key});
+
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -63,12 +65,12 @@ class _CartPageState extends State<CartPage> {
   }
 
   void checkout() {
-    // Implement your checkout functionality here
+
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('Checkout'),
-        content: const Text('Proceed to payment?'),
+        content: const Text('Proceed to Checkout?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -76,11 +78,8 @@ class _CartPageState extends State<CartPage> {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
-              clearCart();
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Checkout successful!')),
-              );
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckoutPage()));
+
             },
             child: const Text('Proceed'),
           ),
@@ -93,7 +92,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cart'),
+        title:  Text("Cart Page"),
         actions: [
           IconButton(
             icon: const Icon(Icons.delete),
@@ -119,7 +118,7 @@ class _CartPageState extends State<CartPage> {
                       fit: BoxFit.cover,
                     ),
                     title: Text(cartItems[index]['name']),
-                    subtitle: Text('₹${cartItems[index]['price']}'),
+                    subtitle: Text('Rs.${cartItems[index]['price']}'),
                     trailing: IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),
                       onPressed: () => removeCartItem(index),
@@ -147,7 +146,7 @@ class _CartPageState extends State<CartPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Total: ₹${totalPrice.toStringAsFixed(2)}',
+                    'Total: Rs.${totalPrice.toStringAsFixed(2)}',
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   ElevatedButton(
