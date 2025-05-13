@@ -1,0 +1,26 @@
+{
+    "NSPrivacyAccessedAPITypes": [
+        {
+            "NSPrivacyAccessedAPIType": "NSCameraUsageDescription",
+            "NSPrivacyAccessedAPITypeReasons": ["NSPrivacyAccessedAPITypeGeneralUse"]
+        },
+        {
+            "NSPrivacyAccessedAPIType": "NSLocationWhenInUseUsageDescription",
+            "NSPrivacyAccessedAPITypeReasons": ["NSPrivacyAccessedAPITypeGeneralUse"]
+        }
+    ],
+    "NSPrivacyCollectedDataTypes": [
+        {
+            "NSPrivacyCollectedDataType": "Precise Location",
+            "NSPrivacyCollectedDataTypeLinked": false,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": ["App Functionality", "Navigation"]
+        },
+        {
+            "NSPrivacyCollectedDataType": "Photos or Videos",
+            "NSPrivacyCollectedDataTypeLinked": false,
+            "NSPrivacyCollectedDataTypeTracking": false,
+            "NSPrivacyCollectedDataTypePurposes": ["App Functionality"]
+        }
+    ]
+}
