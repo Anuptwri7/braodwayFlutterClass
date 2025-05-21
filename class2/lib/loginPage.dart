@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:class2/homepage.dart';
 import 'package:class2/singupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -128,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: ElevatedButton(
                       onPressed: () {
-                    _validation();
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=>Homepage()));
+                    // _validation();
                   },
 
                       child: Text("Login")),
