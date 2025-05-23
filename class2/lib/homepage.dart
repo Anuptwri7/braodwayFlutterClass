@@ -22,17 +22,16 @@ class _HomepageState extends State<Homepage> {
         title: Text("Home Page"),
       ),
       drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
             DrawerHeader(
               decoration: const BoxDecoration(color: Colors.teal),
               child: Center(
                 child: Stack(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage('assets/icon.jpg') ,
+                      backgroundImage: AssetImage('assets/icon.jpg'),
                     ),
                     Positioned(
                       bottom: 0,
@@ -51,18 +50,24 @@ class _HomepageState extends State<Homepage> {
                 ),
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text("Home"),
-              onTap: () => Navigator.pop(context),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: [
+                  ListTile(
+                    leading: const Icon(Icons.home),
+                    title: const Text("Home"),
+                    onTap: () => Navigator.pop(context),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.shopping_cart),
+                    title: const Text("Cart"),
+                    onTap: () {},
+                  ),
+                ],
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.shopping_cart),
-              title: const Text("Cart"),
-              onTap: () {
-
-              },
-            ),
+            const Divider(),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text("Logout"),
@@ -70,10 +75,10 @@ class _HomepageState extends State<Homepage> {
 
               },
             ),
-
           ],
         ),
       ),
+
       body: Column(
         children: [
           CarouselSlider(

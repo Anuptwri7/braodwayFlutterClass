@@ -1,5 +1,6 @@
+import 'dart:convert';
 import 'dart:developer';
-
+import 'package:http/http.dart' as http;
 import 'package:class2/homepage.dart';
 import 'package:class2/singupPage.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,29 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool _obsecure = true;
+
+  Future postLogin() async {
+
+    final response = await http.post(
+      Uri.parse('https://api-barrel.sooritechnology.com.np/api/v1/user-app/login'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: json.encode(
+          {
+            "userName": emailController.text,
+            "password": passwordController.text
+          }
+      ),
+
+
+
+    );
+
+    return response;
+  }
+
 
   void _validation(){
 
@@ -129,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Center(
                   child: ElevatedButton(
                       onPressed: () {
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=>Homepage()));
+                        postLogin();
                     // _validation();
                   },
 
