@@ -2,7 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+  String name;
+ Homepage(this.name);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -19,7 +20,7 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-        title: Text("Home Page"),
+        title: Text(widget.name),
       ),
       drawer: Drawer(
         child: Column(

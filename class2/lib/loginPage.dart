@@ -32,11 +32,18 @@ class _LoginScreenState extends State<LoginScreen> {
             "userName": emailController.text,
             "password": passwordController.text
           }
-      ),
+      ));
+
+      if(response.statusCode==200){
+        log(jsonDecode(response.body)['userName']);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Homepage(jsonDecode(response.body)['userName'])));
+      }else{
+        Fluttertoast.showToast(msg: "Invalid");
+      }
 
 
 
-    );
+
 
     return response;
   }
