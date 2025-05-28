@@ -1,9 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Homepage extends StatefulWidget {
-  String name;
- Homepage(this.name);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -15,12 +14,26 @@ class _HomepageState extends State<Homepage> {
     'https://www.w3schools.com/w3images/mountains.jpg',
     'https://www.w3schools.com/w3images/forest.jpg',
   ];
+  String name = "";
+
+  void getData()async{
+    SharedPreferences preferences =await SharedPreferences.getInstance();
+   setState(() {
+     name = preferences.getString("username")!;
+   });
+  }
 
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(child: Scaffold(
+    return SafeArea(
+        child: Scaffold(
       appBar: AppBar(
-        title: Text(widget.name),
+        title: Text("Hello : "+name),
       ),
       drawer: Drawer(
         child: Column(

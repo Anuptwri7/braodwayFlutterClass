@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:class2/tabPages.dart';
 import 'package:http/http.dart' as http;
 import 'package:class2/homepage.dart';
 import 'package:class2/singupPage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -35,8 +37,12 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
 
       if(response.statusCode==200){
+        SharedPreferences prefs =await SharedPreferences.getInstance();
+
         log(jsonDecode(response.body)['userName']);
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Homepage(jsonDecode(response.body)['userName'])));
+        prefs.setString("username",jsonDecode(response.body)['userName']);
+        prefs.setInt("id",jsonDecode(response.body)['id']);
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Mainpage()));
       }else{
         Fluttertoast.showToast(msg: "Invalid");
       }
@@ -119,6 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
+                SizedBox(height: 20,),
                 TextFormField(
                   obscureText: _obsecure,
                   controller: passwordController,
@@ -159,7 +166,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(height: 120,),
                 Center(
                   child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async{
+
+
+                        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Mainpage()));
                         postLogin();
                     // _validation();
                   },
